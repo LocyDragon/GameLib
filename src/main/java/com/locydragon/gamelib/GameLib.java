@@ -1,8 +1,6 @@
 package com.locydragon.gamelib;
 
-import com.locydragon.gamelib.core.listeners.GamePlayerChatListener;
-import com.locydragon.gamelib.core.listeners.GamePlayerMoveListener;
-import com.locydragon.gamelib.core.listeners.GamePlayerQuitListener;
+import com.locydragon.gamelib.core.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,6 +12,9 @@ public class GameLib extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new GamePlayerMoveListener(), this);
 		Bukkit.getPluginManager().registerEvents(new GamePlayerQuitListener(), this);
 		Bukkit.getPluginManager().registerEvents(new GamePlayerChatListener(), this);
+		Bukkit.getPluginManager().registerEvents(new GamePlayerDeathListener(), this);
+		Bukkit.getPluginManager().registerEvents(new GamePlayerDropItemEvent(), this);
+		Bukkit.getPluginManager().registerEvents(new GamePlayerThrowEggListener(), this);
 		instance = this;
 	}
 }
