@@ -6,6 +6,7 @@ import com.locydragon.gamelib.api.event.baby.bukkitevents.GamePlayerQuitServerEv
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 public class GamePlayerQuitListener implements Listener {
@@ -17,5 +18,14 @@ public class GamePlayerQuitListener implements Listener {
 			return;
 		}
 		EventBus.callEvent(play.getGame(), new GamePlayerQuitServerEvent(play, e));
+	}
+	@EventHandler
+	public void onPlayerKick(PlayerKickEvent e) {
+		Player player = e.getPlayer();
+		PlayingPlayer play = PlayingPlayer.search(player);
+		if (play.getGame() == null || play.getTeam() == -1) {
+			return;
+		}
+		EventBus.callEvent(play.getGame(), new GamePlayerQuitServerEvent(play, new PlayerQuitEvent(e.getPlayer(), e.getReason())));
 	}
 }

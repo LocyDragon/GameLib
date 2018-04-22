@@ -15,6 +15,7 @@ public class GameLib extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new GamePlayerDeathListener(), this);
 		Bukkit.getPluginManager().registerEvents(new GamePlayerDropItemEvent(), this);
 		Bukkit.getPluginManager().registerEvents(new GamePlayerThrowEggListener(), this);
+		Bukkit.getPluginManager().registerEvents(new GamePlayerExpChangeEvent(), this);
 		instance = this;
 	}
 }
