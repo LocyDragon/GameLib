@@ -3,18 +3,18 @@ package com.locydragon.gamelib.api.event.baby.bukkitevents;
 import com.locydragon.gamelib.api.entity.PlayingPlayer;
 import com.locydragon.gamelib.api.event.GameEvent;
 import com.locydragon.gamelib.api.event.type.EventType;
-import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
-public class GamePlayerMoveEvent extends GameEvent {
+public class GamePlayerQuitServerEvent extends GameEvent {
 	private PlayingPlayer player = null;
-	private PlayerMoveEvent prop = null;
-	public GamePlayerMoveEvent(PlayingPlayer who, PlayerMoveEvent e) {
-		super.type = EventType.PLAYING_PLAYER_MOVE;
+	private PlayerQuitEvent prop = null;
+	public GamePlayerQuitServerEvent(PlayingPlayer who, PlayerQuitEvent e) {
+		super.type = EventType.PLAYING_PLAYER_QUIT_SERVER;
 		this.player = who;
 		this.prop = e;
 	}
 
-	public PlayerMoveEvent getProp() {
+	public PlayerQuitEvent getProp() {
 		return this.prop;
 	}
 

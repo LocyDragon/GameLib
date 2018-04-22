@@ -13,6 +13,7 @@ import com.locydragon.gamelib.api.exception.NoSuchTeamException;
 import com.locydragon.gamelib.core.GameIdManager;
 import com.locydragon.gamelib.core.GameRunTime;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import java.util.*;
@@ -71,6 +72,30 @@ public class CustomGame {
 	public CustomGame startGame() {
 		this.isStart = true;
 		EventBus.callEvent(this, new GameStartEvent());
+		return this;
+	}
+	public CustomGame broadcastMsg(String message) {
+		for (List<String> obj : this.teamList) {
+			for (String player : obj) {
+				if (Bukkit.getPlayer(player) == null) {
+					continue;
+				}
+				Bukkit.getPlayer(player).sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+			}
+		}
+		return this;
+	}
+	public CustomGame broadcastMsgInTeam(int id, String message) {
+		if (id < 0 || teamList.size() <= id) {
+			throw new NoSuchTeamException("Cannot find team "+id+".");
+		}
+		List<String> team = this.teamList.get(id);
+		for (String player : team) {
+			if (Bukkit.getPlayer(player) == null) {
+				continue;
+			}
+			Bukkit.getPlayer(player).sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+		}
 		return this;
 	}
 	public boolean quit(Player who) {

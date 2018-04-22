@@ -2,21 +2,20 @@ package com.locydragon.gamelib.core.listeners;
 
 import com.locydragon.gamelib.api.EventBus;
 import com.locydragon.gamelib.api.entity.PlayingPlayer;
-import com.locydragon.gamelib.api.event.baby.bukkitevents.GamePlayerMoveEvent;
+import com.locydragon.gamelib.api.event.baby.bukkitevents.GamePlayerChatEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-public class GamePlayerMoveListener implements Listener {
+public class GamePlayerChatListener implements Listener {
 	@EventHandler
-	public void onMove(PlayerMoveEvent e) {
+	public void onPlayerChat(AsyncPlayerChatEvent e) {
 		Player player = e.getPlayer();
 		PlayingPlayer play = PlayingPlayer.search(player);
 		if (play.getGame() == null || play.getTeam() == -1) {
 			return;
 		}
-		EventBus.callEvent(play.getGame(), new GamePlayerMoveEvent(play, e));
+		EventBus.callEvent(play.getGame(), new GamePlayerChatEvent(play, e));
 	}
 }
-
