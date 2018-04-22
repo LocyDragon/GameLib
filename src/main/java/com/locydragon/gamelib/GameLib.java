@@ -1,6 +1,7 @@
 package com.locydragon.gamelib;
 
 
+import com.locydragon.gamelib.api.util.InventoryManager;
 import com.locydragon.gamelib.core.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -26,5 +27,7 @@ public class GameLib extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new GamePlayerTeleportListener(), this);
 		Bukkit.getPluginManager().registerEvents(new GamePlayerDamageAtEntityListener(), this);
 		instance = this;
+		saveDefaultConfig();
+		InventoryManager.a();
 	}
 }
