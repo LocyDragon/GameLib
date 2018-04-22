@@ -1,5 +1,6 @@
 package com.locydragon.gamelib;
 
+
 import com.locydragon.gamelib.core.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,6 +22,9 @@ public class GameLib extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new GamePlayerItemBreakListener(), this);
 		Bukkit.getPluginManager().registerEvents(new GamePlayerItemConsumeListener(), this);
 		Bukkit.getPluginManager().registerEvents(new GamePlayerPickUpItemListener(), this);
+		Bukkit.getPluginManager().registerEvents(new GamePlayerRespawnEvent(), this);
+		Bukkit.getPluginManager().registerEvents(new GamePlayerTeleportListener(), this);
+		Bukkit.getPluginManager().registerEvents(new GamePlayerDamageAtEntityListener(), this);
 		instance = this;
 	}
 }
