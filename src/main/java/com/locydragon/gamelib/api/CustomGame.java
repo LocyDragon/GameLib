@@ -76,7 +76,7 @@ public class CustomGame {
 	}
 
 	/**
-	 * 获取游戏ID，游戏ID时唯一的
+	 * 获取游戏ID，游戏ID是唯一的
 	 * @return 游戏ID
 	 */
 	public Long getGameId() {
