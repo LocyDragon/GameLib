@@ -1,4 +1,4 @@
 name: GameLib
-main: com.locydragon.gamelib
+main: com.locydragon.gamelib.GameLib
 version: 1.0.0
 author: LocyDragon

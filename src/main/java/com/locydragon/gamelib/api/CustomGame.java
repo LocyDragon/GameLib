@@ -50,7 +50,7 @@ public class CustomGame {
 	protected void callEvent(EventType type, GameEvent evt) {
 		Set<Map.Entry<EventType,EventExecutor>> bus = this.eventBus.entrySet();
 		for (Map.Entry<EventType,EventExecutor> entry : bus) {
-			if (entry.getKey().equals(type)) {
+			if (entry.getKey().equals(type) || entry.getKey() == type) {
 				entry.getValue().onEvent(evt);
 			}
 		}
@@ -100,6 +100,9 @@ public class CustomGame {
 	}
 	public boolean quit(Player who) {
 		PlayingPlayer player = PlayingPlayer.search(who);
+		if (player.getTeam() == -1 || player.getGame() == null) {
+			return false;
+		}
 		List<String> playerTeam = this.teamList.get(player.getTeam());
 		List<String> newTeam = new ArrayList<>();
 		for (String each : playerTeam) {
@@ -156,6 +159,15 @@ public class CustomGame {
 		if (this.isStart == false) {
 			return false;
 		}
+		for (CustomGame game : GameRunTime.gameList) {
+			for (List<String> name : game.teamList) {
+				for (String obj : name) {
+					if (obj.equalsIgnoreCase(who.getName())) {
+						return false;
+					}
+				}
+			}
+		}
 		HashMap<Integer,List<String>> notFullTeams = new HashMap<Integer,List<String>>();
 		for (int i = 0;i < this.teamList.size();i++) {
 			if (this.teamList.get(i).size() >= this.max) {
@@ -167,7 +179,7 @@ public class CustomGame {
 			return false;
 		}
 		Set<Map.Entry<Integer,List<String>>> teamSet = notFullTeams.entrySet();
-		double r = Math.random()*teamSet.size();
+		double r = Math.random()*notFullTeams.size();
 		int random = (int)r;
 		Map.Entry<Integer,List<String>> choose = null;
 		int i = 0;
@@ -175,6 +187,7 @@ public class CustomGame {
 			if (i == random) {
 				choose = entry;
 			}
+			i++;
 		}
 		if (choose == null) {
 			return false;
