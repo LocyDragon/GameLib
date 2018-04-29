@@ -4,7 +4,9 @@ import com.locydragon.gamelib.api.entity.PlayingPlayer;
 import com.locydragon.gamelib.api.event.GameEvent;
 import com.locydragon.gamelib.api.event.type.EventType;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-
+/**
+ * 事件对应type: PLAYING_PLAYER_INTERACT_ENTITY;
+ */
 public class GamePlayerInteractEntityEvent extends GameEvent {
 	private PlayingPlayer player = null;
 	private PlayerInteractEntityEvent prop = null;

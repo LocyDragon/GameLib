@@ -5,6 +5,9 @@ import com.locydragon.gamelib.api.event.GameEvent;
 import com.locydragon.gamelib.api.event.type.EventType;
 import org.bukkit.event.player.PlayerMoveEvent;
 
+/**
+ * 事件对应type: PLAYING_PLAYER_MOVE;
+ */
 public class GamePlayerMoveEvent extends GameEvent {
 	private PlayingPlayer player = null;
 	private PlayerMoveEvent prop = null;

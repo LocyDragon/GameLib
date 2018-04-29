@@ -5,7 +5,9 @@ import com.locydragon.gamelib.api.event.GameEvent;
 import com.locydragon.gamelib.api.event.type.EventType;
 import org.bukkit.event.player.PlayerItemBreakEvent;
 
-
+/**
+ * 事件对应type: PLAYING_ITEM_BREAK;
+ */
 public class GamePlayerItemBreakEvent extends GameEvent {
 	private PlayingPlayer player = null;
 	private PlayerItemBreakEvent prop = null;

@@ -34,15 +34,34 @@ public class CustomGame {
 		this.max = max;
 		GameRunTime.gameList.add(this);
 	}
+
+	/**
+	 * 停止游戏
+	 * @return
+	 */
 	public CustomGame stop() {
 		this.isStart = false;
 		EventBus.callEvent(this, new GameEndEvent());
 		return this;
 	}
+
+	/**
+	 * 在几秒后执行一个runnable
+	 * @param runnable 对象runnable
+	 * @param second 多少秒之后
+	 * @return
+	 */
 	public CustomGame runTaskLater(Runnable runnable, Long second) {
 		Bukkit.getScheduler().runTaskLater(GameLib.instance, runnable, second*20);
 		return this;
 	}
+
+	/**
+	 * 可以用链式增加事件，详细查看github上的例子
+	 * @param type 事件类型
+	 * @param executor 事件执行类(内部类也可以)
+	 * @return
+	 */
 	public CustomGame addEvent(EventType type, EventExecutor executor) {
 		eventBus.put(type, executor);
 		return this;
@@ -55,6 +74,11 @@ public class CustomGame {
 			}
 		}
 	}
+
+	/**
+	 * 获取游戏ID，游戏ID时唯一的
+	 * @return 游戏ID
+	 */
 	public Long getGameId() {
 		return this.gameId;
 	}
@@ -69,11 +93,22 @@ public class CustomGame {
 		}
 		return false;
 	}
+
+	/**
+	 * 开始游戏
+	 * @return
+	 */
 	public CustomGame startGame() {
 		this.isStart = true;
 		EventBus.callEvent(this, new GameStartEvent());
 		return this;
 	}
+
+	/**
+	 * 给所有在游戏的人发送信息
+	 * @param message 信息
+	 * @return
+	 */
 	public CustomGame broadcastMsg(String message) {
 		for (List<String> obj : this.teamList) {
 			for (String player : obj) {
@@ -85,6 +120,13 @@ public class CustomGame {
 		}
 		return this;
 	}
+
+	/**
+	 * 在某个组内公告信息
+	 * @param id 组ID
+ 	 * @param message 信息
+	 * @return
+	 */
 	public CustomGame broadcastMsgInTeam(int id, String message) {
 		if (id < 0 || teamList.size() <= id) {
 			throw new NoSuchTeamException("Cannot find team "+id+".");
@@ -98,6 +140,12 @@ public class CustomGame {
 		}
 		return this;
 	}
+
+	/**
+	 * 退出某个玩家
+	 * @param who 玩家对象
+	 * @return 是否退出成功，退出不成功的情况是玩家不在游戏中.
+	 */
 	public boolean quit(Player who) {
 		PlayingPlayer player = PlayingPlayer.search(who);
 		if (player.getTeam() == -1 || player.getGame() == null) {
@@ -115,7 +163,12 @@ public class CustomGame {
 		EventBus.callEvent(this, new PlayerGameQuitEvent(who));
 		return true;
 	}
-	//正在游戏中的
+
+	/**
+	 * 获取整个队的玩家
+	 * @param id 队id
+	 * @return 队员
+	 */
 	public List<Player> getPlayerInGameByTeamId(int id) {
 		if (id < 0 || teamList.size() <= id) {
 			throw new NoSuchTeamException("Cannot find team "+id+".");
@@ -131,7 +184,13 @@ public class CustomGame {
 		}
 		return toList;
 	}
-	//如果满人了或游戏未开始已经在游戏里返回false，在指定的teamId中
+
+	/**
+	 * 把玩家加入指定组id
+	 * @param id 组id
+	 * @param who 玩家
+	 * @return 是否加入成功，如果满人了或游戏未开始已经在游戏里返回false
+	 */
 	public boolean joinPlayerInTeam(int id, Player who) {
 		if (this.isStart == false) {
 			return false;
@@ -154,6 +213,12 @@ public class CustomGame {
 		EventBus.callEvent(this, new PlayerGameJoinEvent((who)));
 		return true;
 	}
+
+	/**
+	 * 直接把某玩家加入游戏中
+	 * @param who 玩家对象
+	 * @return 是否加入成功，如果游戏未开始或玩家已经在游戏中或满人加入失败
+	 */
 	//直接加入
 	public boolean joinPlayer(Player who) {
 		if (this.isStart == false) {
@@ -198,6 +263,11 @@ public class CustomGame {
 		EventBus.callEvent(this, new PlayerGameJoinEvent((who)));
 		return true;
 	}
+
+	/**
+	 * 获取所有组id
+	 * @return 组id
+	 */
 	public List<Integer> getTeamIDs() {
 		List<Integer> list = new ArrayList<>();
 		int first = 0;

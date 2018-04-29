@@ -1,5 +1,9 @@
 package com.locydragon.gamelib.api.event.type;
 
+/**
+ * 事件类型
+ * 具体请在com.locydragon.gamelib.api.event里面查看详细注释.
+ */
 public enum EventType {
 	EMPTY,ON_GAME_QUIT,ON_GAME_JOIN,ON_GAME_START,ON_GAME_END,PLAYING_PLAYER_MOVE,PLAYING_PLAYER_QUIT_SERVER,
 	PLAYING_PLAYER_CHAT,PLAYING_PLAYER_DEATH,PLAYING_PLAYER_DROP_ITEM,PLAYING_PLAYER_THROW_EGG,PLAYING_PLAYER_EXP_CHANGE,

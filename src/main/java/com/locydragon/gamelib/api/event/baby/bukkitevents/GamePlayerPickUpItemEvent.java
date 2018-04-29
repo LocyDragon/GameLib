@@ -4,7 +4,9 @@ import com.locydragon.gamelib.api.entity.PlayingPlayer;
 import com.locydragon.gamelib.api.event.GameEvent;
 import com.locydragon.gamelib.api.event.type.EventType;
 import org.bukkit.event.player.PlayerPickupItemEvent;
-
+/**
+ * 事件对应type: PLAYING_PLAYER_PICK_UP_ITEM;
+ */
 public class GamePlayerPickUpItemEvent extends GameEvent {
 	private PlayingPlayer player = null;
 	private PlayerPickupItemEvent prop = null;

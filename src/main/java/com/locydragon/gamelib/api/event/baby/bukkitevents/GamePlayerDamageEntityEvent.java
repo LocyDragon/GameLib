@@ -4,7 +4,9 @@ import com.locydragon.gamelib.api.entity.PlayingPlayer;
 import com.locydragon.gamelib.api.event.GameEvent;
 import com.locydragon.gamelib.api.event.type.EventType;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-
+/**
+ * 该类对应EventType: PLAYING_PLAYER_DAMAGE_AT_ENTITY
+ */
 public class GamePlayerDamageEntityEvent extends GameEvent {
 	private PlayingPlayer player = null;
 	private EntityDamageByEntityEvent prop = null;

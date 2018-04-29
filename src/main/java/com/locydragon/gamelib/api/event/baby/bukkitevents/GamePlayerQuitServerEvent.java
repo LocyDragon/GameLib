@@ -4,7 +4,9 @@ import com.locydragon.gamelib.api.entity.PlayingPlayer;
 import com.locydragon.gamelib.api.event.GameEvent;
 import com.locydragon.gamelib.api.event.type.EventType;
 import org.bukkit.event.player.PlayerQuitEvent;
-
+/**
+ * 事件对应type: PLAYING_PLAYER_QUIT_SERVER;
+ */
 public class GamePlayerQuitServerEvent extends GameEvent {
 	private PlayingPlayer player = null;
 	private PlayerQuitEvent prop = null;

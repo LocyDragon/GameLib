@@ -6,6 +6,11 @@ import com.locydragon.gamelib.core.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+/**
+ * @author LocyDragon
+ * 项目地址: https://github.com/LocyDragon/GameLib
+ * 例子地址: https://github.com/LocyDragon/GameLib/blob/master/TestGame.java
+ */
 public class GameLib extends JavaPlugin {
 	public static GameLib instance;
 	@Override

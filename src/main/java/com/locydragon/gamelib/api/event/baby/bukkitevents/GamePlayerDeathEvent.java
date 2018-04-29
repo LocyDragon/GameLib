@@ -5,7 +5,9 @@ import com.locydragon.gamelib.api.event.GameEvent;
 import com.locydragon.gamelib.api.event.type.EventType;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-
+/**
+ * 事件对应type: PLAYING_PLAYER_DEATH
+ */
 public class GamePlayerDeathEvent extends GameEvent {
 	private PlayingPlayer player = null;
 	private PlayerDeathEvent prop = null;
