@@ -36,18 +36,18 @@ public class TestGame extends JavaPlugin {
 				.addEvent(EventType.PLAYING_PLAYER_DEATH, gameEvent -> {
 					    GamePlayerDeathEvent event = (GamePlayerDeathEvent)gameEvent;
 					    //这里可以强转
-						PlayingPlayer player = PlayingPlayer.search(event.getProp().getEntity().getKiller());
+				            PlayingPlayer player = PlayingPlayer.search(event.getProp().getEntity().getKiller());
 					    //获取PlayingPlayer实例对象
 					    if (player.getGame() == null || player.getTeam() == -1) {
 					    	//检查一下杀人者是否在游戏当中
 					    	return;
-						}
+					    }
 					    manager.addOneScore(player.getTeam());
 					    //加一分
-						game.broadcastMsg(ChatColor.RED+player.getPlayerName()+"杀死了"+event.getProp().getEntity().getName());
-						//广播杀敌信息
-						game.broadcastMsg(ChatColor.RED+"目前组"+event.getPlayer().getTeam()+"分数: "+manager.getScore(player.getTeam()));
-						//广播分数
+					    game.broadcastMsg(ChatColor.RED+player.getPlayerName()+"杀死了"+event.getProp().getEntity().getName());
+					    //广播杀敌信息
+					    game.broadcastMsg(ChatColor.RED+"目前组"+event.getPlayer().getTeam()+"分数: "+manager.getScore(player.getTeam()));
+					    //广播分数
 				})
 				.addEvent(EventType.ON_GAME_JOIN, gameEvent -> {
 					((Player)gameEvent.getPlayer()).sendMessage("你进入了游戏.");
@@ -57,13 +57,13 @@ public class TestGame extends JavaPlugin {
 					((Player)gameEvent.getPlayer()).sendMessage("你退出了游戏.");
 					//凡是以"ON"开头的事件都得转成Player，其他转成PlayingPlayer即可
 				})
-				.startGame();
+				.startGame(); //开始游戏
 		manager = new ScoreManager(game);
 		//实例化积分器对象
 		new CommandManager("tgame")
 				.bindJoinCmd("join", this.game)
 				//快速加入游戏指令，不过不推荐这么做
 				.bindQuitCmd("quit", this.game);
-		        //快速设置退出游戏指令
+		                //快速设置退出游戏指令
 	}
 }
