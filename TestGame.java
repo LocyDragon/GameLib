@@ -2,7 +2,7 @@
 //输入/tgame quit时退出游戏
 //有两个队,1v1
 //杀一个人得一分
-
+//注意，改插件版本为1.11.2，如果有其他要求请在下面删除CommandManager
 
 import com.locydragon.gamelib.api.CustomGame;
 import com.locydragon.gamelib.api.GameLibrary;
@@ -60,10 +60,12 @@ public class TestGame extends JavaPlugin {
 				.startGame(); //开始游戏
 		manager = new ScoreManager(game);
 		//实例化积分器对象
-		new CommandManager("tgame")
+		new CommandManager("tgame") //这是为了方便快速注册指令
 				.bindJoinCmd("join", this.game)
 				//快速加入游戏指令，不过不推荐这么做
 				.bindQuitCmd("quit", this.game);
 		                //快速设置退出游戏指令
+		//注意: CommandManager仅在1.11.2以下版本奏效，若高于这个版本会报错。
+		//结果方案:自行注册指令
 	}
 }
